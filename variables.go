@@ -14,14 +14,28 @@
 
 
 //find the area of rectangle
-package main 
-import "fmt"
+// package main 
+// import "fmt"
 
-func main(){
-    length := 10
-    breath := 20
-    area_of_rectangle := length * breath
+// func main(){
+//     length := 10
+//     breath := 20
+//     area_of_rectangle := length * breath
     
-    fmt.Println((area_of_rectangle))
-}
+//     fmt.Println((area_of_rectangle))
+// }
 
+
+package main
+import "fmt"
+func main(){
+    var basicsalary float64 = 50000
+    HRA := 0.20
+    DA := 0.10
+    grosssalary := basicsalary + HRA + DA
+
+    fmt.Println(basicsalary)
+    fmt.Println(HRA)
+    fmt.Println(DA)
+    fmt.Println(grosssalary)
+}
