@@ -104,44 +104,71 @@
 // }
 
 
-package main
+// package main
 
+// import "fmt"
+
+// // Define the Laptop struct
+// type Laptop struct {
+// 	Brand     string
+// 	RAM       int
+// 	Storage   int
+// 	Processor string
+// }
+
+// func main() {
+
+// 	// Create a Laptop object
+// 	laptop := Laptop{
+// 		Brand:     "HP",
+// 		RAM:       8,
+// 		Storage:   512,
+// 		Processor: "Intel Core i5",
+// 	}
+
+// 	// Display information before updating RAM
+// 	fmt.Println("Laptop Information Before Update")
+// 	fmt.Println("--------------------------------")
+// 	fmt.Println("Brand      :", laptop.Brand)
+// 	fmt.Println("RAM        :", laptop.RAM, "GB")
+// 	fmt.Println("Storage    :", laptop.Storage, "GB")
+// 	fmt.Println("Processor  :", laptop.Processor)
+
+// 	// Update RAM from 8 GB to 16 GB
+// 	laptop.RAM = 16
+
+// 	// Display information after updating RAM
+// 	fmt.Println("\nLaptop Information After Update")
+// 	fmt.Println("-------------------------------")
+// 	fmt.Println("Brand      :", laptop.Brand)
+// 	fmt.Println("RAM        :", laptop.RAM, "GB")
+// 	fmt.Println("Storage    :", laptop.Storage, "GB")
+// 	fmt.Println("Processor  :", laptop.Processor)
+// }
+
+
+package main 
 import "fmt"
+type Employee struct {
+	Name string
+	basicsalary float64
+	Bonus float64
+}
 
-// Define the Laptop struct
-type Laptop struct {
-	Brand     string
-	RAM       int
-	Storage   int
-	Processor string
+func calculateSalary(emp Employee) float64 {
+	return emp.basicsalary + emp.Bonus
 }
 
 func main() {
-
-	// Create a Laptop object
-	laptop := Laptop{
-		Brand:     "HP",
-		RAM:       8,
-		Storage:   512,
-		Processor: "Intel Core i5",
+	employee := Employee{
+		Name:        "Vishnu",
+		basicsalary: 50000,
+		Bonus:       10000,
 	}
+	finalSalary := calculateSalary(employee)
 
-	// Display information before updating RAM
-	fmt.Println("Laptop Information Before Update")
-	fmt.Println("--------------------------------")
-	fmt.Println("Brand      :", laptop.Brand)
-	fmt.Println("RAM        :", laptop.RAM, "GB")
-	fmt.Println("Storage    :", laptop.Storage, "GB")
-	fmt.Println("Processor  :", laptop.Processor)
-
-	// Update RAM from 8 GB to 16 GB
-	laptop.RAM = 16
-
-	// Display information after updating RAM
-	fmt.Println("\nLaptop Information After Update")
-	fmt.Println("-------------------------------")
-	fmt.Println("Brand      :", laptop.Brand)
-	fmt.Println("RAM        :", laptop.RAM, "GB")
-	fmt.Println("Storage    :", laptop.Storage, "GB")
-	fmt.Println("Processor  :", laptop.Processor)
+	fmt.Println(employee.Name)
+	fmt.Println(employee.basicsalary)
+	fmt.Println(employee.Bonus)
+	fmt.Println(finalSalary)
 }
