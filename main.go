@@ -147,28 +147,55 @@
 // }
 
 
-package main 
+// package main 
+// import "fmt"
+// type Employee struct {
+// 	Name string
+// 	basicsalary float64
+// 	Bonus float64
+// }
+
+// func calculateSalary(emp Employee) float64 {
+// 	return emp.basicsalary + emp.Bonus
+// }
+
+// func main() {
+// 	employee := Employee{
+// 		Name:        "Vishnu",
+// 		basicsalary: 50000,
+// 		Bonus:       10000,
+// 	}
+// 	finalSalary := calculateSalary(employee)
+
+// 	fmt.Println(employee.Name)
+// 	fmt.Println(employee.basicsalary)
+// 	fmt.Println(employee.Bonus)
+// 	fmt.Println(finalSalary)
+// }
+
+
+
+package main
 import "fmt"
-type Employee struct {
-	Name string
-	basicsalary float64
-	Bonus float64
+type Movie struct {
+	Title   string
+	Hours   int
+	Minutes int
 }
 
-func calculateSalary(emp Employee) float64 {
-	return emp.basicsalary + emp.Bonus
+func calculateMinutes(movie Movie) int {
+	return (movie.Hours * 60) + movie.Minutes
 }
 
 func main() {
-	employee := Employee{
-		Name:        "Vishnu",
-		basicsalary: 50000,
-		Bonus:       10000,
+	movie := Movie{
+		Title:   "3 Idiots",
+		Hours:   2,
+		Minutes: 50,
 	}
-	finalSalary := calculateSalary(employee)
-
-	fmt.Println(employee.Name)
-	fmt.Println(employee.basicsalary)
-	fmt.Println(employee.Bonus)
-	fmt.Println(finalSalary)
+	totalMinutes := calculateMinutes(movie)
+	fmt.Println( movie.Title)
+	fmt.Println( movie.Hours)
+	fmt.Println( movie.Minutes)
+	fmt.Println( totalMinutes, "minutes")
 }
