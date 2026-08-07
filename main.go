@@ -175,27 +175,54 @@
 
 
 
+// package main
+// import "fmt"
+// type Movie struct {
+// 	Title   string
+// 	Hours   int
+// 	Minutes int
+// }
+
+// func calculateMinutes(movie Movie) int {
+// 	return (movie.Hours * 60) + movie.Minutes
+// }
+
+// func main() {
+// 	movie := Movie{
+// 		Title:   "3 Idiots",
+// 		Hours:   2,
+// 		Minutes: 50,
+// 	}
+// 	totalMinutes := calculateMinutes(movie)
+// 	fmt.Println( movie.Title)
+// 	fmt.Println( movie.Hours)
+// 	fmt.Println( movie.Minutes)
+// 	fmt.Println( totalMinutes, "minutes")
+// }
+
+
+
 package main
 import "fmt"
-type Movie struct {
-	Title   string
-	Hours   int
-	Minutes int
-}
 
-func calculateMinutes(movie Movie) int {
-	return (movie.Hours * 60) + movie.Minutes
+type ElectricityBill struct{
+	CustomerName string 
+	Units int
+	RatePerUnit float64
+}
+func calculateBill(bill ElectricityBill) float64 {
+	return float64(bill.Units) * bill.RatePerUnit
 }
 
 func main() {
-	movie := Movie{
-		Title:   "3 Idiots",
-		Hours:   2,
-		Minutes: 50,
+	bill := ElectricityBill{
+		CustomerName:  "Rahul",
+		Units: 250,
 	}
-	totalMinutes := calculateMinutes(movie)
-	fmt.Println( movie.Title)
-	fmt.Println( movie.Hours)
-	fmt.Println( movie.Minutes)
-	fmt.Println( totalMinutes, "minutes")
+
+	totalBill := calculateBill(bill)
+	fmt.Println("Customer Name :", bill.CustomerName)
+	fmt.Println("Units         :", bill.Units)
+	fmt.Println("Rate Per Unit :", bill.RatePerUnit)
+	fmt.Println("Total Bill    :", totalBill)
 }
