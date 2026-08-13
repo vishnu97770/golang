@@ -252,37 +252,65 @@
 
 //create two fucntion: processOrders() and then print "processing order 1" to "processingOrder to 5" , sendNotification() and then print "sendNotification 1" to "sendNotification 5" ,run both functuon using goroutine
 
+// package main 
+// import (
+// 	"fmt"
+// 	"sync"
+// )
+
+// func processOrders(wg *sync.WaitGroup) {
+// 	defer wg.Done()
+
+// 	for i:=1; i<=5; i++ {
+// 		fmt.Println("Processing order", i)
+// 	}
+// } 
+
+
+// func sendNotification(wg *sync.WaitGroup) {
+// 	defer wg.Done()
+
+// 	for i := 1; i <= 5; i++ {
+// 		fmt.Println("Send notification", i)
+// 	}
+// }
+
+// func main() {
+// 	var wg sync.WaitGroup
+
+// 	wg.Add(2)
+
+// 	go processOrders(&wg)
+// 	go sendNotification(&wg)
+
+// 	wg.Wait()
+// }
+
+
+
+// updateInventory() → prints "Inventory Updated"
+// sendEmail() → prints "Email Sent"
+// sendNotification() → prints "Notification Sent"
+
+
 package main 
-import (
-	"fmt"
-	"sync"
-)
+import "fmt"
+func updateInventory() {
+	fmt.Println("Inventory Updated")
+}
 
-func processOrders(wg *sync.WaitGroup) {
-	defer wg.Done()
+func sendEmail() {
+	fmt.Println("Email Sent")
+}
 
-	for i:=1; i<=5; i++ {
-		fmt.Println("Processing order", i)
-	}
-} 
-
-
-func sendNotification(wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	for i := 1; i <= 5; i++ {
-		fmt.Println("Send notification", i)
-	}
+func sendNotification() {
+	fmt.Println("Notification Sent")
 }
 
 func main() {
-	var wg sync.WaitGroup
+	go updateInventory()
+	go sendEmail()
+	go sendNotification()
 
-	wg.Add(2)
-
-	go processOrders(&wg)
-	go sendNotification(&wg)
-
-	wg.Wait()
+	fmt.Scanln()
 }
-
