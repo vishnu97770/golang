@@ -255,7 +255,7 @@
 // package main 
 // import (
 // 	"fmt"
-// 	"sync"
+// 	"sync"      
 // )
 
 // func processOrders(wg *sync.WaitGroup) {
@@ -293,24 +293,74 @@
 // sendNotification() → prints "Notification Sent"
 
 
-package main 
-import "fmt"
-func updateInventory() {
-	fmt.Println("Inventory Updated")
-}
+// package main 
+// import "fmt"
+// func updateInventory() {
+// 	fmt.Println("Inventory Updated")
+// }
 
-func sendEmail() {
-	fmt.Println("Email Sent")
-}
+// func sendEmail() {
+// 	fmt.Println("Email Sent")
+// }
 
-func sendNotification() {
-	fmt.Println("Notification Sent")
-}
+// func sendNotification() {
+// 	fmt.Println("Notification Sent")
+// }
 
-func main() {
-	go updateInventory()
-	go sendEmail()
-	go sendNotification()
+// func main() {
+// 	go updateInventory()
+// 	go sendEmail()
+// 	go sendNotification()
 
-	fmt.Scanln()
-}
+//	fmt.Scanln()    // Scanln() is used to wait for inout from the user
+
+
+
+
+// CHANNEL - commmunication mechanish used by goroutine to send & receive the date, allows go routine to communicate without directly sharing the data.
+
+
+
+
+// buffered and unbuffered channels.
+
+// buffered - ch := make(chan int) - it has no storage space -
+
+
+// Goroutine A                 Goroutine B
+//      |                           |
+//      | ---- 10 ---------------->|
+//      |                           |
+//    WAIT                       RECEIVE
+
+// package main
+// import "fmt"
+// func main() {
+// 	ch := make(chan int)
+
+// go func() {
+// 	ch <- 10
+// }()
+
+// fmt.Println(<-ch)
+
+// }
+
+
+// create a channel of type int. create a goroutine that sends the number 100 through the channel . recieves the number in main and print the recieved 100:
+
+
+// package main 
+// import "fmt"
+// func main(){
+// 	ch := make(chan int)
+// 	go func() {
+// 		ch <- 100
+// 	}()
+// 	num := <-ch
+// 	fmt.Println("recieved:", num)
+// }
+
+
+// craett a function calculationsquare() that recieves a number and se ds its square thorugh a channedl
+
