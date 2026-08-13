@@ -202,27 +202,48 @@
 
 
 
-package main
-import "fmt"
+// package main
+// import "fmt"
 
-type ElectricityBill struct{
-	CustomerName string 
-	Units int
-	RatePerUnit float64
-}
-func calculateBill(bill ElectricityBill) float64 {
-	return float64(bill.Units) * bill.RatePerUnit
-}
+// type ElectricityBill struct{
+// 	CustomerName string 
+// 	Units int
+// 	RatePerUnit float64
+// }
+// func calculateBill(bill ElectricityBill) float64 {
+// 	return float64(bill.Units) * bill.RatePerUnit
+// }
 
-func main() {
-	bill := ElectricityBill{
-		CustomerName:  "Rahul",
-		Units: 250,
-	}
+// func main() {
+// 	bill := ElectricityBill{
+// 		CustomerName:  "Rahul",
+// 		Units: 250,
+// 	}
 
-	totalBill := calculateBill(bill)
-	fmt.Println("Customer Name :", bill.CustomerName)
-	fmt.Println("Units         :", bill.Units)
-	fmt.Println("Rate Per Unit :", bill.RatePerUnit)
-	fmt.Println("Total Bill    :", totalBill)
-}
+// 	totalBill := calculateBill(bill)
+// 	fmt.Println("Customer Name :", bill.CustomerName)
+// 	fmt.Println("Units         :", bill.Units)
+// 	fmt.Println("Rate Per Unit :", bill.RatePerUnit)
+// 	fmt.Println("Total Bill    :", totalBill)
+// }
+
+
+
+
+
+// create a fucntion print number() that print number 1 to 5 . execute the fucntion using goroutine
+
+// package main
+
+// import "fmt"
+
+// func printNumber() {
+// 	for i := 1; i <= 5; i++ {
+// 		fmt.Println(i)
+// 	}
+// }
+
+// func main() {
+// 	go printNumber()
+// 	fmt.Scanln()
+// }
