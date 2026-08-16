@@ -363,4 +363,3 @@
 
 
 // craett a function calculationsquare() that recieves a number and se ds its square thorugh a channedl
-
