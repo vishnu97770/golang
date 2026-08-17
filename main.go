@@ -458,30 +458,66 @@
 // Create a shared slice called message. Start three goroutines. Each goroutine should add one message : "hello", "welcome", and "Good Mornig". Use a Mutex to safely modify the shared slice.
 
 
+// package main 
+// import (
+// 	"fmt"
+// 	"sync"
+// )
+
+// var messages []string
+// var mutex sync.Mutex
+// var wg sync.WaitGroup
+
+// func addMesage(message string) {
+// 	defer wg.Done()
+
+// 	mutex.Lock()
+// 	messages = append(messages, message)
+// 	mutex.Unlock()
+// }
+
+// func main() {
+// 	wg.Add(3)
+
+// 	go addMesage("Hello")
+// 	go addMesage("Welcome")
+// 	go addMesage("Good Morning")
+// 	wg.Wait()
+// 	fmt.Println(messages)
+// }
+
+//the project is i want to build an app 
+
+//create four goroutines representing email, payment, notification, and search services . Each service should increase a shared messagecount by 1. use a mutex
+
+
 package main 
 import (
 	"fmt"
 	"sync"
 )
 
-var messages []string
-var mutex sync.Mutex
+
+var messagecount int 
+var mutex sync.Mutex 
 var wg sync.WaitGroup
 
-func addMesage(message string) {
+func service(name string) {
 	defer wg.Done()
-
 	mutex.Lock()
-	messages = append(messages, message)
+	messagecount++
 	mutex.Unlock()
+	fmt.Println(name, "service completed")
+	
 }
 
-func main() {
-	wg.Add(3)
+func main()  {
+	wg.Add(4)
 
-	go addMesage("Hello")
-	go addMesage("Welcome")
-	go addMesage("Good Morning")
+	go service("Email")
+	go service("Payment")
+	go service("notification")
+	go service("Search Services")
 	wg.Wait()
-	fmt.Println(messages)
+	fmt.Println("Final message count:", messagecount)
 }
