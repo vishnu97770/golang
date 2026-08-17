@@ -425,6 +425,10 @@
 // }
 
 
+
+// Read and write 
+
+
 // package main 
 // import (
 // 	"fmt"
@@ -435,26 +439,33 @@
 // var number = 100
 
 // var rw sync.RWMutex
+// var wg sync.WaitGroup
+
 // func Read()  {
+// 	defer wg.Done()
 // 	rw.RLock()
 // 	fmt.Println(number)
 // 	rw.RUnlock()
 // }
-
-
 // func Write(){
+// 	defer wg.Done()
 // 	rw.Lock()
 // 	number++
 // 	rw.Unlock()
 // }
-
-// func ()  {
-	
+// func main()  {
+// 	wg.Add(2)
+// 	go Read()
+// 	go Write()
+// 	wg.Wait()
 // }
 
 
+// what is goroutine - It is a lightweight thread managed entirely by the Go runtime, rather than your computer's operating system.
 
-
+// What is Mutex - it is a synchronization tool used in programming to prevent multiple goroutines from accessing or modifying the same piece of memory (like a variable , map or slice) at the exact same fraction of a second. 
+// how does it works - if a worker (goroutine) wants to use the bathroom (modify data),  the must lock the door using the key (mu.Lock()).if another person worker arrives, they see the locked dooe and must wait in line , when the first worker is finished, they open the door and return the key (mu.Unlock()). , the next worker in line can now grab the key and enter.
+ 
 // Create a shared slice called message. Start three goroutines. Each goroutine should add one message : "hello", "welcome", and "Good Mornig". Use a Mutex to safely modify the shared slice.
 
 
@@ -491,33 +502,34 @@
 //create four goroutines representing email, payment, notification, and search services . Each service should increase a shared messagecount by 1. use a mutex
 
 
-package main 
-import (
-	"fmt"
-	"sync"
-)
+// package main 
+// import (
+// 	"fmt"
+// 	"sync"
+// )
 
 
-var messagecount int 
-var mutex sync.Mutex 
-var wg sync.WaitGroup
+// var messagecount int 
+// var mutex sync.Mutex 
+// var wg sync.WaitGroup
 
-func service(name string) {
-	defer wg.Done()
-	mutex.Lock()
-	messagecount++
-	mutex.Unlock()
-	fmt.Println(name, "service completed")
+// func service(name string) {
+// 	defer wg.Done()
+// 	mutex.Lock()
+// 	defer mutex.Unlock()
+// 	messagecount++
+// 	fmt.Println(name, "service completed")
 	
-}
+// }
 
-func main()  {
-	wg.Add(4)
+// func main()  {
+// 	wg.Add(4)
 
-	go service("Email")
-	go service("Payment")
-	go service("notification")
-	go service("Search Services")
-	wg.Wait()
-	fmt.Println("Final message count:", messagecount)
-}
+// 	go service("Email")
+// 	go service("Payment")
+// 	go service("notification")
+// 	go service("Search Services")
+// 	wg.Wait()
+// 	fmt.Println("Final message count:", messagecount)
+// }
+
