@@ -1,8 +1,8 @@
-package main
+// package main
 
-func main() {
-	demoFunctions()
-}
+// func main() {
+// 	demoFunctions()
+// }
 
 // package main
 
@@ -369,3 +369,119 @@ func main() {
 
 
 // craett a function calculationsquare() that recieves a number and se ds its square thorugh a channedl
+
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"sync"
+// )
+
+// var counter int
+// var wg sync.WaitGroup
+
+// func Increment() {
+// 	defer wg.Done()
+
+// 	for i := 0; i < 1000; i++ {
+// 		counter++
+// 	}
+// }
+
+// func main() {
+// 	wg.Add(2)
+
+// 	go Increment()
+// 	go Increment()
+
+// 	wg.Wait()
+
+// 	fmt.Println(counter)
+// }
+
+
+
+//write a go programe with start go routine . the go routine should print "hello from goroutine use sunc.waitgroup so main() waits for the goroutine to finish
+
+
+// package main
+// import (
+//     "fmt"
+//     "sync"
+// )
+
+// var wg sync.WaitGroup
+// func Hello() {
+//     defer wg.Done()
+//     fmt.Println("Hello from goroutine")
+
+// }
+
+// func main() {
+//     wg.Add(1)
+//     go Hello()
+//     wg.Wait()
+// }
+
+
+// package main 
+// import (
+// 	"fmt"
+// 	"sync"
+// )
+
+
+// var number = 100
+
+// var rw sync.RWMutex
+// func Read()  {
+// 	rw.RLock()
+// 	fmt.Println(number)
+// 	rw.RUnlock()
+// }
+
+
+// func Write(){
+// 	rw.Lock()
+// 	number++
+// 	rw.Unlock()
+// }
+
+// func ()  {
+	
+// }
+
+
+
+
+// Create a shared slice called message. Start three goroutines. Each goroutine should add one message : "hello", "welcome", and "Good Mornig". Use a Mutex to safely modify the shared slice.
+
+
+package main 
+import (
+	"fmt"
+	"sync"
+)
+
+var messages []string
+var mutex sync.Mutex
+var wg sync.WaitGroup
+
+func addMesage(message string) {
+	defer wg.Done()
+
+	mutex.Lock()
+	messages = append(messages, message)
+	mutex.Unlock()
+}
+
+func main() {
+	wg.Add(3)
+
+	go addMesage("Hello")
+	go addMesage("Welcome")
+	go addMesage("Good Morning")
+	wg.Wait()
+	fmt.Println(messages)
+}
