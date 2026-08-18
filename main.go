@@ -524,12 +524,10 @@
 
 // func main()  {
 // 	wg.Add(4)
-
 // 	go service("Email")
 // 	go service("Payment")
-// 	go service("notification")
+// 	go service("Notification")
 // 	go service("Search Services")
 // 	wg.Wait()
 // 	fmt.Println("Final message count:", messagecount)
 // }
-
