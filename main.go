@@ -543,30 +543,32 @@
 
 // stop a goroutine using context create a worker that performs 10 itereations. The worer should stop immediately if the context is cancelled. cancel the context after approximately 3 seconds/
 
-package main 
-import (
-	"fmt"
-	"context"
-	"time"
-)
+// package main 
+// import (
+// 	"fmt"
+// 	"context"
+// 	"time"
+// )
 
-func worker(ctx context.Context) {
-	for {
-		select {
-		case <-ctx.Done():
-			fmt.Println("worker stopped")
-			return
-		default:
-			fmt.Println("Worker is working..")
-			time.Sleep(time.Second)
-		}
-	}
-}
+// func worker(ctx context.Context) {
+// 	for {
+// 		select {
+// 		case <-ctx.Done():
+// 			fmt.Println("worker stopped")
+// 			return
+// 		default:
+// 			fmt.Println("Worker is working..")
+// 			time.Sleep(time.Second)
+// 		}
+// 	}
+// }
 
-func main() {
-	ctx, cancel := context.WithCancel(context.Background())
-	go worker(ctx)
-	time.Sleep(3*time.Second)
-	cancel()
-	time.Sleep(time.Second)
-}
+// func main() {
+// 	ctx, cancel := context.WithCancel(context.Background())
+// 	go worker(ctx)
+// 	time.Sleep(3*time.Second)
+// 	cancel()
+// 	time.Sleep(time.Second)
+// }
+
+
