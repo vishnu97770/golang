@@ -531,3 +531,42 @@
 // 	wg.Wait()
 // 	fmt.Println("Final message count:", messagecount)
 // }
+
+
+// Adavance concurrency pattern
+
+
+//what is concurrency -  a program can work on multiple tasks during the same period of time .
+// what is context - it is use to control the lifetime of operations - espacially goroutines, API requests, databses queries etc. , WHY WE NEED context - 
+
+
+
+// stop a goroutine using context create a worker that performs 10 itereations. The worer should stop immediately if the context is cancelled. cancel the context after approximately 3 seconds/
+
+package main 
+import (
+	"fmt"
+	"context"
+	"time"
+)
+
+func worker(ctx context.Context) {
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("worker stopped")
+			return
+		default:
+			fmt.Println("Worker is working..")
+			time.Sleep(time.Second)
+		}
+	}
+}
+
+func main() {
+	ctx, cancel := context.WithCancel(context.Background())
+	go worker(ctx)
+	time.Sleep(3*time.Second)
+	cancel()
+	time.Sleep(time.Second)
+}
