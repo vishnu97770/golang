@@ -651,30 +651,30 @@
 
 // a company need to sent 8 emails. instead of creatng a seperate goroutine for every email. create a worker pool with 2 workers each worker should: 1 recceive an email id from the job channel. 2, print htat it is sending thr email, process alll emails until the channel is closed use sunc.waitgroup to ensure all workers finish.
 
-package main
+// package main
 
-import (
-	"fmt"
-	"sync"
-)
+// import (
+// 	"fmt"
+// 	"sync"
+// )
 
-func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
+// func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
+// 	defer wg.Done()
 
-	for emailID := range jobs {
-		fmt.Printf("Worker %d is sending email %d\n", id, emailID)
-	}
-}
+// 	for emailID := range jobs {
+// 		fmt.Printf("Worker %d is sending email %d\n", id, emailID)
+// 	}
+// }
 
-func main() {
-	jobs := make(chan int)
-	var wg sync.WaitGroup
-	wg.Add(2)
-	go worker(1, jobs, &wg)
-	go worker(2, jobs, &wg)
-	for emailID := 1; emailID <= 8; emailID++ {
-		jobs <- emailID
-	}
-	close(jobs)
-	wg.Wait()
-}
+// func main() {
+// 	jobs := make(chan int)
+// 	var wg sync.WaitGroup
+// 	wg.Add(2)
+// 	go worker(1, jobs, &wg)
+// 	go worker(2, jobs, &wg)
+// 	for emailID := 1; emailID <= 8; emailID++ {
+// 		jobs <- emailID
+// 	}
+// 	close(jobs)
+// 	wg.Wait()
+// }
