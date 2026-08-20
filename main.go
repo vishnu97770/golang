@@ -572,3 +572,109 @@
 // }
 
 
+
+
+// worker  pool - fixed number of goroutines , that process multiple tasks in a shared quese, Why do we use worker poo;; - limit Goroutines (suppose there as 1000 tasks and which is devided by three 5 workers) , and also we can reuse the workers. , it is better resource management.
+// how does worker pool work ? - 1 create the job , 2. put into a queue process  3 worker take the tasks 
+
+
+
+// package main 
+// import (
+// 	"fmt"
+// 	"sync"
+// )
+
+// func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
+// 	defer wg.Done()
+// 	for job := range jobs {
+// 		fmt.Println("worker%d processing job %d\n", id, job,)
+// 	}
+// }
+
+// func main(){
+// 	jobs := make(chan int, 10)
+// 	var wg sync.WaitGroup
+// 	wg.Add(3)
+// 	go worker(1, jobs, &wg)
+// 	go worker(2, jobs, &wg)
+// 	go worker(3, jobs, &wg)
+
+
+// 	for i := 1; i <= 10; i++{
+// 		jobs <- i
+// 	}
+
+
+// close(jobs)
+// wg.Wait()
+// }
+
+
+//create a worker pool in go with 3 weker go routines , the program should , 1 creat a channel to send jobs , start 3 workers , send numbers from 1 to 10 as jobs . each worker should calculate the square of the received number, print the worker ID, job number adb calculated sqaure , use sync.WaitGroup  to wait for all workers. close the jobs channels after sending all jobs/
+
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"sync"
+// )
+
+// func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
+// 	defer wg.Done()
+
+// 	for job := range jobs {
+// 		square := job * job
+// 		fmt.Printf("Worker %d: Job %d, Square = %d\n", id, job, square)
+// 	}
+// }
+
+// func main() {
+// 	jobs := make(chan int)
+// 	var wg sync.WaitGroup
+// 	wg.Add(3)
+
+// 	go worker(1, jobs, &wg)
+// 	go worker(2, jobs, &wg)
+// 	go worker(3, jobs, &wg)
+
+// 	for i := 1; i <= 10; i++ {
+// 		jobs <- i
+// 	}
+// 	close(jobs)
+// 	wg.Wait()
+
+// }
+
+
+
+// a company need to sent 8 emails. instead of creatng a seperate goroutine for every email. create a worker pool with 2 workers each worker should: 1 recceive an email id from the job channel. 2, print htat it is sending thr email, process alll emails until the channel is closed use sunc.waitgroup to ensure all workers finish.
+
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	for emailID := range jobs {
+		fmt.Printf("Worker %d is sending email %d\n", id, emailID)
+	}
+}
+
+func main() {
+	jobs := make(chan int)
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go worker(1, jobs, &wg)
+	go worker(2, jobs, &wg)
+	for emailID := 1; emailID <= 8; emailID++ {
+		jobs <- emailID
+	}
+	close(jobs)
+	wg.Wait()
+}
