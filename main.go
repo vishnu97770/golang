@@ -678,3 +678,36 @@
 // 	close(jobs)
 // 	wg.Wait()
 // }
+
+
+
+package main
+import (
+	"fmt"
+	"sync"
+)
+
+func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	for emailID := range jobs {
+		fmt.Printf("Worker %d is sending email %d\n", id, emailID)
+	}
+}
+
+func main() {
+	jobs := make(chan int)
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go worker(1, jobs, &wg)
+	go worker(2, jobs, &wg)
+	for emailID := 1; emailID <= 8; emailID++ {
+		jobs <- emailID
+	}
+	close(jobs)
+	wg.Wait()
+}
+
+
+
+what is the about he is the coming so can you do this
