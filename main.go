@@ -19,6 +19,7 @@
 // }
 
 //find the area of rectangle
+
 // package main
 // import "fmt"
 
@@ -678,5 +679,53 @@
 // 	close(jobs)
 // 	wg.Wait()
 // }
+
+
+
+
+
+//Real-Life Example
+//A car manufacturing factory.
+//Stage 1
+//Build an engine.
+
+//Stage 2
+//Paint car.
+//↓
+//Stage 3
+//Quality inspection.
+//↓
+//Finished vehicle.
+
+
+
+package main
+import "fmt"
+func Generate() <-chan int {
+out := make(chan int)
+go func() {
+for i := 1; i <= 5; i++ {
+out <- i
+}
+close(out)
+}()
+return out
+}
+func Square(in <-chan int) <-chan int {
+out := make(chan int)
+go func() {
+for n := range in { out <- n * n
+}
+close(out)
+}()
+return out
+}
+func main() {
+numbers := Generate()
+squares := Square(numbers)
+for value := range squares {
+fmt.Println(value)
+}
+}
 
 
